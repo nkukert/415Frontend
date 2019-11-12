@@ -1,0 +1,27 @@
+{
+  "CoffeeIOT": {
+    "BrewStart": {
+      "Sunday": "OFF",
+      "Monday": "7:00AM",
+      "Tuesday": "7:00AM",
+      "Wednesday": "7:00AM",
+      "Thursday": "7:00AM",
+      "Friday": "7:00AM",
+      "Saturday": "OFF"
+    },
+    "NumberCups": {
+      "One": "5",
+      "Two": "10",
+      "Three": "15",
+      "Four": "20",
+      "Five": "25",
+      "Six": "30",
+      "Seven": "35",
+      "Eight": "40",
+      "Nine": "45",
+      "Ten": "50",
+      "Eleven": "55",
+      "Twelve": "60"
+    }
+  }
+}
