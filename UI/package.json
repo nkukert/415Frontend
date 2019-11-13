@@ -12,6 +12,7 @@
     "browserify-fs": "^1.0.0",
     "clsx": "latest",
     "date-fns": "^2.6.0",
+    "eslint": "^6.6.0",
     "load-json-file": "^6.2.0",
     "next": "latest",
     "prop-types": "latest",

@@ -22,6 +22,25 @@ import Deposits from '../src/dashboard/Deposits';
 import Orders from '../src/dashboard/Orders';
 import { FormControl, InputLabel, Input, FormHelperText, TextField } from '@material-ui/core';
 import Config from '../src/dashboard/Config';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import PeopleIcon from '@material-ui/icons/People';
+import BarChartIcon from '@material-ui/icons/BarChart';
+import LayersIcon from '@material-ui/icons/Layers';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+
 
 function Copyright() {
   const classes = useStyles();
@@ -36,6 +55,7 @@ function Copyright() {
     </Typography>
   );
 }
+
 
 const drawerWidth = 240;
 
@@ -124,12 +144,22 @@ const useStyles = makeStyles(theme => ({
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const [openDialog, setOpenDialog] = React.useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const handleDialogOpen = () => {
+    setOpenDialog(true);
+  };
+
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+  };
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -169,10 +199,61 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <List>
+          <div>
+            <ListItem button>
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="Config" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <AccountCircleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Account" onClick={handleDialogOpen} />
+            </ListItem>
+      </div>
+        </List>
         <Divider />
         { /* <List>{secondaryListItems}</List> */ }
       </Drawer>
+      <div>
+      <Dialog open={openDialog} onClose={handleDialogClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Login</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            To subscribe to this website, please enter your email address here. We will send updates
+            occasionally.
+          </DialogContentText>
+          <TextField
+            required
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Email Address"
+            type="email"
+            fullWidth
+          />
+          <TextField
+            required
+            margin="dense"
+            id="standard-password-input"
+            label="Password"
+            type="password"
+            fullWidth
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleDialogClose} color="primary">
+            Subscribe
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
           <Config></Config>
