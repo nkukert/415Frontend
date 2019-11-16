@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -143,8 +143,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const [openDialog, setOpenDialog] = React.useState(false);
+  const [open, setOpen] = useState(true);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [userName, setUserName] = useState("Username");
+  const [password, setPassword] = useState("Password");
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -159,6 +161,16 @@ export default function Dashboard() {
   const handleDialogClose = () => {
     setOpenDialog(false);
   };
+
+  function exportJson() {
+    var toJson = {
+      userName,
+      password
+    }
+    console.log(JSON.parse(JSON.stringify(toJson)));
+  
+    handleDialogClose();
+  }
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -234,6 +246,8 @@ export default function Dashboard() {
             label="Email Address"
             type="email"
             fullWidth
+            //defaultValue={userName}
+            onChange={e => setUserName(e.target.value)}
           />
           <TextField
             required
@@ -242,13 +256,14 @@ export default function Dashboard() {
             label="Password"
             type="password"
             fullWidth
+            onChange={e => setPassword(e.target.value)}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDialogClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleDialogClose} color="primary">
+          <Button onClick={exportJson} color="primary">
             Subscribe
           </Button>
         </DialogActions>
