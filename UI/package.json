@@ -18,7 +18,7 @@
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "recharts": "^1.7.1",
+    "recharts": "^2.1.14",
     "trongrid": "^1.2.2",
     "write-file-atomic": "^3.0.1"
   },
